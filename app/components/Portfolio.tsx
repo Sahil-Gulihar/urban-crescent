@@ -115,7 +115,7 @@ export default function Portfolio() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(24,22,15,0.65) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(24,22,15,0.8) 0%, rgba(24,22,15,0.5) 35%, rgba(24,22,15,0.15) 65%, transparent 85%)",
                 transition: "opacity 0.4s",
               }}
             />
@@ -138,7 +138,7 @@ export default function Portfolio() {
               >
                 {projects[0].title}
               </h3>
-              <span style={{ fontSize: "0.72rem", color: "rgba(248,244,238,0.65)" }}>
+              <span style={{ fontSize: "0.72rem", color: "rgba(248,244,238,0.85)" }}>
                 {projects[0].location}
               </span>
             </div>
@@ -167,7 +167,7 @@ export default function Portfolio() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(24,22,15,0.65) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(24,22,15,0.8) 0%, rgba(24,22,15,0.5) 35%, rgba(24,22,15,0.15) 65%, transparent 85%)",
               }}
             />
             <div style={{ position: "absolute", bottom: 24, left: 24, zIndex: 2 }}>
@@ -189,7 +189,7 @@ export default function Portfolio() {
               >
                 {projects[1].title}
               </h3>
-              <span style={{ fontSize: "0.7rem", color: "rgba(248,244,238,0.65)" }}>
+              <span style={{ fontSize: "0.7rem", color: "rgba(248,244,238,0.85)" }}>
                 {projects[1].location}
               </span>
             </div>
@@ -218,7 +218,7 @@ export default function Portfolio() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(24,22,15,0.65) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(24,22,15,0.8) 0%, rgba(24,22,15,0.5) 35%, rgba(24,22,15,0.15) 65%, transparent 85%)",
               }}
             />
             <div style={{ position: "absolute", bottom: 24, left: 24, zIndex: 2 }}>
@@ -240,7 +240,7 @@ export default function Portfolio() {
               >
                 {projects[2].title}
               </h3>
-              <span style={{ fontSize: "0.7rem", color: "rgba(248,244,238,0.65)" }}>
+              <span style={{ fontSize: "0.7rem", color: "rgba(248,244,238,0.85)" }}>
                 {projects[2].location}
               </span>
             </div>
@@ -269,7 +269,7 @@ export default function Portfolio() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(24,22,15,0.65) 0%, transparent 60%)",
+                background: "linear-gradient(to top, rgba(24,22,15,0.8) 0%, rgba(24,22,15,0.5) 35%, rgba(24,22,15,0.15) 65%, transparent 85%)",
               }}
             />
             <div style={{ position: "absolute", bottom: 24, left: 28, zIndex: 2 }}>
@@ -291,7 +291,7 @@ export default function Portfolio() {
               >
                 {projects[3].title}
               </h3>
-              <span style={{ fontSize: "0.72rem", color: "rgba(248,244,238,0.65)" }}>
+              <span style={{ fontSize: "0.72rem", color: "rgba(248,244,238,0.85)" }}>
                 {projects[3].location}
               </span>
             </div>
