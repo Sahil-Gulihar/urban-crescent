@@ -34,7 +34,7 @@ const differentiators = [
   {
     num: "03",
     title: "Design Before Dollar",
-    body: "Our complimentary design consultation and 3D visualisation lets you see your space before a single nail is hammered. What you see is exactly what you get — no surprises, no regrets.",
+    body: "Our free design consultation and detailed 3D visualisation let you see your space before a single nail is hammered. What you see is exactly what you get — no surprises, no regrets.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M4 20L14 6l10 14H4z"/>
@@ -46,8 +46,8 @@ const differentiators = [
   },
   {
     num: "04",
-    title: "10-Year Warranty",
-    body: "We stand behind our work with an industry-leading 10-year structural warranty. Our modular systems are built to outlast trends and retain their beauty through years of real living.",
+    title: "Warranty & Assurance",
+    body: "Up to 7 years of plywood warranty and 1 year on hardware — built to endure life's many moments. Warranty terms depend on the selected products and specifications, with hardware covered as per brand policy. We even customise product brands — plywood, hardware and fittings — as per your choice.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M14 3L4 7v8c0 5.5 4.5 10 10 10s10-4.5 10-10V7L14 3z"/>

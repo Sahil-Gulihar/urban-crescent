@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import LogoMark from "./LogoMark";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -47,37 +48,37 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#"
-          style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 0 }}
+          aria-label="Urban Crescent home"
+          style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}
         >
+          <LogoMark size={scrolled ? 36 : 42} />
           <span
             className="font-display"
             style={{
               fontSize: "1.5rem",
-              fontWeight: 400,
-              letterSpacing: "0.02em",
-              color: "var(--charcoal)",
-              lineHeight: 1.1,
+              fontWeight: 500,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "#4A4A4A",
+              lineHeight: 1,
             }}
           >
             Urban Crescent
-          </span>
-          <span
-            style={{
-              fontSize: "0.58rem",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--gold)",
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 400,
-            }}
-          >
-            Modular Interiors
           </span>
         </a>
 
         {/* Desktop Nav */}
         <nav
-          style={{ display: "flex", gap: 36, alignItems: "center" }}
+          style={{
+            display: "flex",
+            gap: 36,
+            alignItems: "center",
+            padding: scrolled ? 0 : "8px 8px 8px 28px",
+            background: scrolled ? "transparent" : "rgba(248,244,238,0.92)",
+            backdropFilter: scrolled ? "none" : "blur(12px)",
+            boxShadow: scrolled ? "none" : "0 4px 24px rgba(24,22,15,0.12)",
+            transition: "background 0.4s ease, padding 0.3s ease, box-shadow 0.4s ease",
+          }}
           className="hidden-mobile"
         >
           {navLinks.map((link) => (
@@ -88,20 +89,20 @@ export default function Navbar() {
                 fontSize: "0.72rem",
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: "var(--taupe)",
+                color: "var(--charcoal)",
                 textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 400,
+                fontWeight: 500,
                 transition: "color 0.2s ease",
                 padding: "4px 0",
                 borderBottom: "1px solid transparent",
               }}
               onMouseEnter={(e) => {
-                (e.target as HTMLAnchorElement).style.color = "var(--charcoal)";
+                (e.target as HTMLAnchorElement).style.color = "var(--gold)";
                 (e.target as HTMLAnchorElement).style.borderBottomColor = "var(--gold)";
               }}
               onMouseLeave={(e) => {
-                (e.target as HTMLAnchorElement).style.color = "var(--taupe)";
+                (e.target as HTMLAnchorElement).style.color = "var(--charcoal)";
                 (e.target as HTMLAnchorElement).style.borderBottomColor = "transparent";
               }}
             >

@@ -89,9 +89,8 @@ export default function CTA() {
             style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
           >
             {[
-              { icon: "📐", text: "Free 3D Design Concept" },
               { icon: "🔧", text: "End-to-End Execution" },
-              { icon: "🛡️", text: "10-Year Warranty" },
+              { icon: "🛡️", text: "Up to 7-Year Warranty" },
             ].map((item) => (
               <div
                 key={item.text}
@@ -146,6 +145,7 @@ export default function CTA() {
               { id: "name", label: "Full Name", type: "text", placeholder: "Priya Sharma" },
               { id: "phone", label: "Phone Number", type: "tel", placeholder: "+91 98765 43210" },
               { id: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
+              { id: "location", label: "Property Location", type: "text", placeholder: "Area, City" },
             ].map((field) => (
               <div key={field.id} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 <label
@@ -216,8 +216,8 @@ export default function CTA() {
                 <option>Full Home Interior</option>
                 <option>Living Room</option>
                 <option>Bedroom</option>
-                <option>Home Office</option>
-                <option>Commercial Space</option>
+                <option>Lighting</option>
+                <option>Painting</option>
               </select>
             </div>
 

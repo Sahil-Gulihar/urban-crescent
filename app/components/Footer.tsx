@@ -1,5 +1,7 @@
 "use client";
 
+import LogoMark from "./LogoMark";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -38,28 +40,20 @@ export default function Footer() {
         >
           {/* Brand */}
           <div>
-            <div style={{ marginBottom: 24 }}>
+            <div style={{ marginBottom: 24, display: "flex", alignItems: "center", gap: 12 }}>
+              <LogoMark size={48} />
               <div
                 className="font-display"
                 style={{
-                  fontSize: "1.8rem",
-                  fontWeight: 300,
+                  fontSize: "1.7rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
                   color: "var(--cream)",
-                  lineHeight: 1.1,
-                  marginBottom: 4,
+                  lineHeight: 1,
                 }}
               >
                 Urban Crescent
-              </div>
-              <div
-                style={{
-                  fontSize: "0.58rem",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "var(--gold)",
-                }}
-              >
-                Modular Interiors
               </div>
             </div>
             <p
@@ -157,8 +151,8 @@ export default function Footer() {
                 "Modular Wardrobes",
                 "Living Spaces",
                 "Bedroom Design",
-                "Home Office",
-                "Commercial",
+                "Lighting",
+                "Painting",
               ].map((item) => (
                 <li key={item}>
                   <a

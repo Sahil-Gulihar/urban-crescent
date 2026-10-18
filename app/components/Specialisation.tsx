@@ -41,21 +41,21 @@ const services = [
   },
   {
     id: "05",
-    title: "Home Offices",
+    title: "Lighting Design",
     description:
-      "Productive, poised workspaces. Modular desking, acoustic panels, and smart storage — design that empowers focus without compromising style.",
-    image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&q=80",
+      "Layered lighting that sets the mood — ambient, task, and accent fixtures planned around how each room is lived in, from morning light to evening glow.",
+    image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80",
     accent: "var(--rose-pale)",
-    tag: "Workspace",
+    tag: "Finishing",
   },
   {
     id: "06",
-    title: "Commercial Interiors",
+    title: "Painting & Finishes",
     description:
-      "Offices, showrooms, and hospitality spaces that communicate your brand story through every surface, fixture, and spatial flow.",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+      "Flawless walls and lasting finishes. Expert colour consultation, textures, and premium paints applied with care for a clean, durable result.",
+    image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=80",
     accent: "var(--blue-pale)",
-    tag: "Commercial",
+    tag: "Finishing",
   },
 ];
 
