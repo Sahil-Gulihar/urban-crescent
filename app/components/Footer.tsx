@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import LogoMark from "./LogoMark";
 
 export default function Footer() {
@@ -155,8 +156,8 @@ export default function Footer() {
                 "Painting",
               ].map((item) => (
                 <li key={item}>
-                  <a
-                    href="#services"
+                  <Link
+                    href="/#services"
                     style={{
                       fontSize: "0.8rem",
                       color: "rgba(248,244,238,0.45)",
@@ -168,7 +169,7 @@ export default function Footer() {
                     onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(248,244,238,0.45)")}
                   >
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -289,11 +290,16 @@ export default function Footer() {
           <p style={{ fontSize: "0.72rem", color: "rgba(248,244,238,0.3)" }}>
             &copy; {currentYear} Urban Crescent. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: 24 }}>
-            {["Privacy Policy", "Terms of Service", "Sitemap"].map((link) => (
-              <a
-                key={link}
-                href="#"
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+            {[
+              { label: "Privacy Policy", href: "/privacy" },
+              { label: "Terms of Service", href: "/terms" },
+              { label: "Warranty Policy", href: "/warranty" },
+              { label: "Sitemap", href: "/sitemap.xml" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
                 style={{
                   fontSize: "0.68rem",
                   color: "rgba(248,244,238,0.3)",
@@ -304,8 +310,8 @@ export default function Footer() {
                 onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(248,244,238,0.6)")}
                 onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(248,244,238,0.3)")}
               >
-                {link}
-              </a>
+                {link.label}
+              </Link>
             ))}
           </div>
         </div>

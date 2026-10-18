@@ -1,0 +1,15 @@
+/* TEAM */
+Studio: Urban Crescent
+Contact: hello@urbancrescent.in
+From: India
+
+/* THANKS */
+Photography: Unsplash contributors (https://unsplash.com)
+
+/* SITE */
+Last update: 2026/10/19
+Language: English
+Standards: HTML5, CSS3
+Components: Next.js, React, Tailwind CSS
+Fonts: Cormorant Garamond, DM Sans (Google Fonts)
+Hosting: Vercel

@@ -1,0 +1,41 @@
+# Urban Crescent
+
+> Urban Crescent is an interior design and execution studio in India. We design, manufacture and install complete home interiors end to end — from the first consultation to handover — and customise product brands (plywood, laminates, hardware, fittings) to each customer's choice.
+
+Cities: Mumbai, Bangalore, Hyderabad, Pune.
+Contact: hello@urbancrescent.in · +91 99999 12345
+Website: https://urban-crescent.vercel.app
+
+## Services
+
+- Modular Kitchens: precision-built kitchen systems, cabinets, countertops and finishes.
+- Modular Wardrobes: walk-in and wall-to-wall storage.
+- Living Spaces: living rooms and open-plan zones.
+- Bedroom Sanctuaries: bedrooms with headboards, study nooks and ambient lighting.
+- Lighting Design: ambient, task and accent lighting planned per room.
+- Painting & Finishes: colour consultation, textures and premium paints.
+
+## How we work
+
+1. Discovery: free consultation to understand the customer's space and lifestyle.
+2. Design: 3D concepts and material boards by senior designers.
+3. Manufacture: factory-built modular units with quality checks.
+4. Install: delivery and installation by our own crew.
+5. Handover: a full walkthrough and snag resolution.
+
+## Warranty
+
+- Plywood: up to 7 years against manufacturing defects, depending on grade and brand.
+- Hardware: 1 year on functional components, as per brand policy.
+Terms depend on the selected products, approved specifications and project conditions.
+
+## Pages
+
+- [Home](https://urban-crescent.vercel.app/): services, portfolio, testimonials and consultation form
+- [Warranty Policy](https://urban-crescent.vercel.app/warranty): coverage, exclusions and how to claim
+- [Terms of Service](https://urban-crescent.vercel.app/terms): quotations, payments, cancellations and refunds
+- [Privacy Policy](https://urban-crescent.vercel.app/privacy): how customer data is handled
+
+## Booking
+
+Customers book a free consultation through the form at https://urban-crescent.vercel.app/#contact (name, phone, email, property location and service of interest), or by email or phone.

@@ -38,6 +38,33 @@ export const metadata: Metadata = {
     description,
   },
   robots: { index: true, follow: true },
+  authors: [{ name: "Urban Crescent", url: "/humans.txt" }],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: "Urban Crescent",
+  description,
+  url: "https://urban-crescent.vercel.app",
+  logo: "https://urban-crescent.vercel.app/icon.svg",
+  image: "https://urban-crescent.vercel.app/opengraph-image",
+  email: "hello@urbancrescent.in",
+  telephone: "+91 99999 12345",
+  areaServed: ["Mumbai", "Bangalore", "Hyderabad", "Pune"].map((name) => ({ "@type": "City", name })),
+  address: { "@type": "PostalAddress", addressCountry: "IN" },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Interior services",
+    itemListElement: [
+      "Modular Kitchens",
+      "Modular Wardrobes",
+      "Living Spaces",
+      "Bedroom Interiors",
+      "Lighting Design",
+      "Painting & Finishes",
+    ].map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
+  },
 };
 
 export const viewport: Viewport = {
@@ -51,7 +78,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
