@@ -153,7 +153,98 @@ export default function Specialisation() {
           </p>
         </div>
 
-        {/* Services bento grid */}
+        {/* Services grid — tablet & desktop (unchanged original layout) */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 2,
+          }}
+          className="services-grid"
+        >
+          {services.map((service, i) => (
+            <div
+              key={service.id}
+              className={`card-hover anim-scale-in d-${Math.min(i * 100 + 200, 700)}`}
+              style={{
+                position: "relative",
+                background: service.accent,
+                cursor: "default",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {/* Image */}
+              <div
+                className="img-wrap"
+                style={{ position: "relative", height: 240, flexShrink: 0 }}
+              >
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+
+              {/* Content */}
+              <div style={{ padding: "28px 28px 32px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: 14,
+                  }}
+                >
+                  <span
+                    className="font-display"
+                    style={{ fontSize: "2rem", fontWeight: 300, color: "var(--taupe-light)" }}
+                  >
+                    {service.id}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.58rem",
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "var(--taupe)",
+                      border: "1px solid var(--taupe-light)",
+                      padding: "4px 10px",
+                    }}
+                  >
+                    {service.tag}
+                  </span>
+                </div>
+                <h3
+                  className="font-display"
+                  style={{
+                    fontSize: "1.4rem",
+                    fontWeight: 400,
+                    color: "var(--charcoal)",
+                    marginBottom: 12,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {service.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.82rem",
+                    lineHeight: 1.75,
+                    color: "var(--taupe)",
+                    fontWeight: 300,
+                  }}
+                >
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Services bento grid — mobile only */}
         <div className="services-bento">
           {services.map((service, i) => (
             <article
@@ -270,36 +361,21 @@ export default function Specialisation() {
       </div>
 
       <style>{`
-        .services-bento {
-          display: grid;
-          gap: 12px;
-          grid-template-columns: repeat(4, 1fr);
-          grid-auto-rows: 290px;
-          grid-template-areas:
-            "kitchen kitchen wardrobe living"
-            "kitchen kitchen bedroom bedroom"
-            "lighting painting painting painting";
-        }
-        .bento-card {
-          position: relative;
-          overflow: hidden;
-          background: var(--cream-dark);
-          isolation: isolate;
-        }
-        .bento-card img {
-          transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .bento-card:hover img { transform: scale(1.05); }
-        .bento-title { font-size: 1.45rem; }
-        .bento-lg .bento-title { font-size: clamp(1.8rem, 2.8vw, 2.6rem); }
-        .bento-lg .bento-desc { font-size: 0.92rem !important; }
-        .bento-lg > div:last-child { padding: 36px !important; }
-        .bento-short { display: none; }
-
+        /* Tablet & desktop: original 3-up cards */
         @media (max-width: 1024px) {
+          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
+        /* Mobile only: bento grid with short copy */
+        .services-bento { display: none; }
+        .bento-desc { display: none; }
+        @media (max-width: 640px) {
+          .services-grid { display: none !important; }
           .services-bento {
+            display: grid;
+            gap: 8px;
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 260px;
+            grid-auto-rows: 210px;
             grid-template-areas:
               "kitchen kitchen"
               "kitchen kitchen"
@@ -307,13 +383,9 @@ export default function Specialisation() {
               "bedroom bedroom"
               "lighting painting";
           }
-        }
-        @media (max-width: 640px) {
-          .services-bento { gap: 8px; grid-auto-rows: 210px; }
+          .bento-card { position: relative; overflow: hidden; background: var(--cream-dark); isolation: isolate; }
           .bento-card > div:last-child { padding: 16px !important; }
           .bento-card > div:nth-child(3) { padding: 14px 16px !important; }
-          .bento-desc { display: none; }
-          .bento-short { display: block; }
           .bento-sm .bento-short { display: none; }
           .bento-sm .bento-tag { display: none; }
           .bento-title { font-size: 1.25rem; margin-bottom: 4px !important; }
