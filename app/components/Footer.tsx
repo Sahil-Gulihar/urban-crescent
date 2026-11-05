@@ -190,10 +190,15 @@ export default function Footer() {
               Company
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-              {["About Us", "Our Process", "Portfolio", "Careers", "Press", "Blog"].map((item) => (
+              {[
+                { label: "Our Process", href: "/#difference" },
+                { label: "Portfolio", href: "/#portfolio" },
+                { label: "Testimonials", href: "/#testimonials" },
+                { label: "Contact Us", href: "/contact" },
+              ].map(({ label: item, href }) => (
                 <li key={item}>
-                  <a
-                    href="#"
+                  <Link
+                    href={href}
                     style={{
                       fontSize: "0.8rem",
                       color: "rgba(248,244,238,0.45)",
@@ -205,7 +210,7 @@ export default function Footer() {
                     onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.color = "rgba(248,244,238,0.45)")}
                   >
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -233,16 +238,8 @@ export default function Footer() {
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.08 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                     </svg>
                   ),
-                  text: "+91 99999 12345",
-                },
-                {
-                  icon: (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                      <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                  ),
-                  text: "hello@urbancrescent.in",
+                  text: "+91 96201 81911",
+                  href: "tel:+919620181911",
                 },
                 {
                   icon: (
@@ -251,7 +248,7 @@ export default function Footer() {
                       <circle cx="12" cy="10" r="3"/>
                     </svg>
                   ),
-                  text: "Mumbai · Bangalore · Hyderabad · Pune",
+                  text: "OMBR Layout, Kasturi Nagar, Bangalore 560043",
                 },
               ].map((c, i) => (
                 <div
@@ -259,9 +256,18 @@ export default function Footer() {
                   style={{ display: "flex", gap: 12, alignItems: "flex-start" }}
                 >
                   <span style={{ color: "var(--gold)", marginTop: 2, flexShrink: 0 }}>{c.icon}</span>
-                  <span style={{ fontSize: "0.78rem", color: "rgba(248,244,238,0.5)", lineHeight: 1.5 }}>
-                    {c.text}
-                  </span>
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      style={{ fontSize: "0.78rem", color: "rgba(248,244,238,0.5)", lineHeight: 1.5, textDecoration: "none" }}
+                    >
+                      {c.text}
+                    </a>
+                  ) : (
+                    <span style={{ fontSize: "0.78rem", color: "rgba(248,244,238,0.5)", lineHeight: 1.5 }}>
+                      {c.text}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>

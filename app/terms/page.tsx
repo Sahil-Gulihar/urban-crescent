@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" updated="19 October 2026">
+    <LegalPage title="Terms of Service" updated="5 November 2026">
       <p>
         These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the Urban Crescent website and the interior
         design, manufacturing and installation services we provide. By using our website or engaging our services,
@@ -107,7 +107,7 @@ export default function TermsPage() {
       <h2>11. Governing law and disputes</h2>
       <p>
         These Terms are governed by the laws of India. We will first try to resolve any dispute amicably. If that
-        is not possible, the courts at Mumbai, Maharashtra will have exclusive jurisdiction.
+        is not possible, the courts at Bengaluru, Karnataka will have exclusive jurisdiction.
       </p>
 
       <h2>12. Changes to these Terms</h2>
@@ -118,8 +118,7 @@ export default function TermsPage() {
 
       <h2>13. Contact</h2>
       <p>
-        For questions about these Terms, write to{" "}
-        <a href="mailto:hello@urbancrescent.in">hello@urbancrescent.in</a> or call +91 99999 12345.
+        For questions about these Terms, call <a href="tel:+919620181911">+91 96201 81911</a> or message us on <a href="https://wa.me/919620181911">WhatsApp</a>.
       </p>
     </LegalPage>
   );

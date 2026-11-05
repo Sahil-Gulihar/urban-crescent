@@ -47,7 +47,7 @@ export default function WarrantyPage() {
 
       <h2>4. How to make a claim</h2>
       <p>
-        Email <a href="mailto:hello@urbancrescent.in">hello@urbancrescent.in</a> or call +91 99999 12345 with
+        Call <a href="tel:+919620181911">+91 96201 81911</a> or message us on <a href="https://wa.me/919620181911">WhatsApp</a> with
         your project name, a description of the issue and photographs. Our team will inspect the issue and, if it is
         covered, repair or replace the affected component at no cost. We may need to coordinate with the brand
         manufacturer, which can affect turnaround time.

@@ -1,70 +1,66 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const testimonials = [
   {
     quote:
-      "Urban Crescent didn't just design our kitchen — they redesigned how our family lives. Every cabinet placement, every finish choice was considered with such precision. It's been two years and it still feels brand new.",
-    author: "Priya Sharma",
-    role: "Homeowner, Bandra Mumbai",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80",
-    project: "Modular Kitchen & Living Room",
+      "Aarti is Unmatched !! Well , to begin I purchased 3 bhk and was very keen on something very different and unique.. in simple words wanted WOW factor ... I was always apprehensive about get interiors getting done through architects/ interior person .\"Budgetary constraints \" When I saw Aarti's work at different sites, was quite impressed and decided to handover entire project of 3BHK.. I never went through her communications on plan, quotation etc .. it's the trust factor, becoz I had so many other things to attend .. Her taste for colour combination is amazing for kitchen , wardrobes , curtains , furniture , upholstery etc is amazing .. not to forget lighting effect .. she designed it very simple but elegant !! without compromising on storage. A big shout out to the wonderful team she has .. so prompt , professional , time management , humble ... let me tell she hardcore negotiator with vendors... Inshort , she respected my budget , delivered high quality product !! worth every rupee !! Thank you for such a flawless and timely execution Aarthi ! High recommend !!",
+    author: "Jitheesh Nair",
+    role: "Revenue Head, Finance in a Box",
+    avatar: "/testimonials/jitesh-nair-home.jpg",
+    avatarAlt: "Foyer with textured wallpaper, a wooden mirror and a carved screen, designed by Urban Crescent",
+    avatarPosition: "center",
+    project: "3BHK Full Home Interior",
   },
   {
     quote:
-      "What set them apart was the seamless end-to-end experience. From the first design consultation to the final installation, I never had to chase anyone. One call resolved everything. Our entire 3BHK was transformed in 45 days.",
-    author: "Rohan Malhotra",
-    role: "Software Engineer, Bangalore",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80",
-    project: "Full Home Interior",
+      "We had a wonderful experience working with Arti as our interior decorator for our flat at Gopalan Aqua. She understood our preferences and helped transform our house into a beautiful and welcoming home. Her creativity, attention to detail, and commitment to her work made the entire process a great experience. We truly appreciate her efforts in bringing our vision to life and making our home feel special. Thank you, Arti, for your wonderful work and dedication. We would happily recommend her to anyone looking for an interior decorator!",
+    author: "Homeowner",
+    role: "Gopalan Aqua, Bangalore",
+    avatar: "/testimonials/gopalan-aqua-client-passport.jpg",
+    avatarAlt: "Urban Crescent client from Gopalan Aqua",
+    avatarPosition: "center top",
+    project: "Home Interior",
   },
   {
     quote:
-      "I was skeptical about modular wardrobes — feared they'd look generic. Urban Crescent proved me completely wrong. The custom finishes, the internal fittings, the soft-close drawers — it's luxury at a very sensible price.",
-    author: "Ananya Krishnan",
-    role: "Architect, Hyderabad",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80",
-    project: "Master Bedroom & Wardrobe",
-  },
-  {
-    quote:
-      "As an architect myself, I'm impossibly demanding. Urban Crescent matched that energy. The 3D visualisations were spot-on, the material quality exceeded what I expected, and the installation crew was meticulous. Five stars without hesitation.",
-    author: "Vikram Nair",
-    role: "Interior Architect, Pune",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&q=80",
-    project: "Home Office & Study",
-  },
-  {
-    quote:
-      "Our office renovation was a complex brief — we needed storage, meeting zones, and open collaboration spaces. Urban Crescent navigated the commercial project beautifully. On time, on budget, and it looks incredible.",
-    author: "Meera Iyer",
-    role: "Founder, Bangalore",
-    rating: 5,
-    avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=120&q=80",
-    project: "Commercial Office Interior",
+      "When we were still wrapping our heads about the fact that we had a house to call our own, Aarti didi and team had put their vision and energy into our home! She worked on a tight timeline, accommodated our requests — to the extent of helping us choose our curtains over a video call when we were overwhelmed with so many things. She ensured we had the best quality of fittings in our budget. Thank you for your support and for being an integral part of our home making journey!",
+    author: "Divya & Jithin",
+    role: "Homeowners",
+    avatar: "/testimonials/divya-jithin-portrait.jpg",
+    avatarAlt: "Divya and Jithin",
+    avatarPosition: "center top",
+    project: "New Home Interior",
   },
 ];
 
-function StarRating({ count }: { count: number }) {
-  return (
-    <div style={{ display: "flex", gap: 3 }}>
-      {Array.from({ length: count }).map((_, i) => (
-        <svg key={i} width="14" height="14" viewBox="0 0 14 14" fill="var(--gold)">
-          <path d="M7 1l1.545 3.131 3.455.502-2.5 2.437.59 3.44L7 9l-3.09 1.62.59-3.44-2.5-2.437 3.455-.502L7 1z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
+// Time on each testimonial scales with its length, within 5–10s.
+const slideDuration = (quote: string) => Math.min(10000, Math.max(5000, quote.length * 10));
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const [tabHidden, setTabHidden] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onMotion = () => setReducedMotion(mq.matches);
+    const onVisibility = () => setTabHidden(document.hidden);
+    onMotion();
+    mq.addEventListener("change", onMotion);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      mq.removeEventListener("change", onMotion);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
+  const autoplay = !reducedMotion && !userPaused;
+  const running = autoplay && !hovered && !tabHidden;
 
   const prev = () => setActive((a) => (a - 1 + testimonials.length) % testimonials.length);
   const next = () => setActive((a) => (a + 1) % testimonials.length);
@@ -102,7 +98,7 @@ export default function Testimonials() {
         style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px", position: "relative", zIndex: 1 }}
       >
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 72 }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
           <span className="section-label anim-fade-up d-0" style={{ display: "inline-block" }}>
             Client Stories
           </span>
@@ -126,12 +122,21 @@ export default function Testimonials() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 2fr",
-            gap: 64,
-            alignItems: "center",
-            marginBottom: 60,
+            gridTemplateColumns: "260px 1fr",
+            gap: 80,
+            alignItems: "start",
+            maxWidth: 1080,
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: 0,
           }}
           className="testimonial-grid"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          onFocus={() => setHovered(true)}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
+          }}
         >
           {/* Left: Avatar + project info */}
           <div
@@ -142,8 +147,9 @@ export default function Testimonials() {
             <div
               style={{
                 position: "relative",
-                width: 200,
-                height: 240,
+                width: "100%",
+                maxWidth: 260,
+                aspectRatio: "4 / 5",
                 marginBottom: 28,
                 overflow: "hidden",
               }}
@@ -151,10 +157,10 @@ export default function Testimonials() {
             >
               <Image
                 src={t.avatar}
-                alt={t.author}
+                alt={t.avatarAlt}
                 fill
-                style={{ objectFit: "cover" }}
-                sizes="200px"
+                style={{ objectFit: "cover", objectPosition: t.avatarPosition }}
+                sizes="260px"
               />
               {/* Gold overlay accent */}
               <div
@@ -169,16 +175,14 @@ export default function Testimonials() {
               />
             </div>
 
-            <StarRating count={t.rating} />
-
             <h4
               className="font-display"
               style={{
                 fontSize: "1.3rem",
                 fontWeight: 400,
                 color: "var(--charcoal)",
-                marginTop: 14,
-                marginBottom: 4,
+                marginTop: 0,
+                marginBottom: 6,
               }}
             >
               {t.author}
@@ -208,10 +212,12 @@ export default function Testimonials() {
             <div
               className="font-display"
               style={{
-                fontSize: "8rem",
-                lineHeight: 0.7,
-                color: "var(--cream-dark)",
-                marginBottom: 24,
+                fontSize: "5.5rem",
+                lineHeight: 0.5,
+                color: "var(--gold-light)",
+                opacity: 0.5,
+                marginBottom: 0,
+                marginTop: 12,
                 userSelect: "none",
                 fontWeight: 300,
               }}
@@ -221,13 +227,14 @@ export default function Testimonials() {
             <blockquote
               className="font-display"
               style={{
-                fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)",
-                fontWeight: 300,
+                fontSize: t.quote.length > 700 ? "clamp(1.1rem, 1.45vw, 1.3rem)" : "clamp(1.2rem, 1.7vw, 1.45rem)",
+                fontWeight: 400,
                 fontStyle: "italic",
-                lineHeight: 1.55,
+                lineHeight: 1.6,
                 color: "var(--charcoal)",
                 margin: 0,
                 marginBottom: 40,
+                maxWidth: 680,
               }}
             >
               {t.quote}
@@ -328,64 +335,76 @@ export default function Testimonials() {
               >
                 {String(active + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
               </span>
+
+              {!reducedMotion && (
+                <button
+                  onClick={() => setUserPaused((p) => !p)}
+                  aria-label={userPaused ? "Resume autoplay" : "Pause autoplay"}
+                  aria-pressed={userPaused}
+                  style={{
+                    width: 32,
+                    height: 32,
+                    border: "none",
+                    background: "transparent",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--taupe)",
+                    padding: 0,
+                  }}
+                >
+                  {userPaused ? (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                      <path d="M3 1.5v9l7.5-4.5z" />
+                    </svg>
+                  ) : (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                      <rect x="2.5" y="1.5" width="2.2" height="9" />
+                      <rect x="7.3" y="1.5" width="2.2" height="9" />
+                    </svg>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Mini testimonial strip */}
+        {/* Autoplay progress bar */}
         <div
+          aria-hidden="true"
           style={{
-            display: "flex",
-            gap: 2,
-            borderTop: "1px solid var(--cream-dark)",
-            paddingTop: 48,
+            maxWidth: 1080,
+            margin: "56px auto 0",
+            height: 2,
+            background: "var(--cream-dark)",
+            overflow: "hidden",
           }}
-          className="testimonial-strip"
         >
-          {testimonials.map((t, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
+          {autoplay && (
+            <div
+              key={`progress-${active}`}
+              className="testimonial-progress"
+              onAnimationEnd={next}
               style={{
-                flex: 1,
-                padding: "16px 20px",
-                textAlign: "left",
-                background: i === active ? "var(--sage-pale)" : "transparent",
-                border: "none",
-                borderTop: i === active ? "2px solid var(--sage)" : "2px solid transparent",
-                cursor: "pointer",
-                transition: "background 0.3s ease",
+                height: "100%",
+                background: "var(--gold)",
+                transformOrigin: "left center",
+                animation: `testimonialProgress ${slideDuration(t.quote)}ms linear forwards`,
+                animationPlayState: running ? "running" : "paused",
               }}
-            >
-              <div
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 400,
-                  color: i === active ? "var(--charcoal)" : "var(--taupe)",
-                  marginBottom: 4,
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                {t.author.split(" ")[0]}
-              </div>
-              <div
-                style={{
-                  fontSize: "0.65rem",
-                  color: "var(--taupe-light)",
-                  letterSpacing: "0.06em",
-                }}
-              >
-                {t.project.split(" ").slice(0, 2).join(" ")}
-              </div>
-            </button>
-          ))}
+            />
+          )}
         </div>
       </div>
 
       <style>{`
+        @keyframes testimonialProgress {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
         @media (max-width: 768px) {
           .testimonial-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-          .testimonial-strip { display: none !important; }
         }
       `}</style>
     </section>

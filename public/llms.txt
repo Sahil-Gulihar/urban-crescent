@@ -3,8 +3,9 @@
 > Urban Crescent is an interior design and execution studio in India. We design, manufacture and install complete home interiors end to end — from the first consultation to handover — and customise product brands (plywood, laminates, hardware, fittings) to each customer's choice.
 
 Cities: Mumbai, Bangalore, Hyderabad, Pune.
-Contact: hello@urbancrescent.in · +91 99999 12345
-Website: https://urban-crescent.vercel.app
+Contact: +91 96201 81911 (phone and WhatsApp)
+Address: OMBR Layout, Kasturi Nagar, Bangalore 560043
+Website: https://www.urbancrescentdesign.com
 
 ## Services
 
@@ -31,11 +32,12 @@ Terms depend on the selected products, approved specifications and project condi
 
 ## Pages
 
-- [Home](https://urban-crescent.vercel.app/): services, portfolio, testimonials and consultation form
-- [Warranty Policy](https://urban-crescent.vercel.app/warranty): coverage, exclusions and how to claim
-- [Terms of Service](https://urban-crescent.vercel.app/terms): quotations, payments, cancellations and refunds
-- [Privacy Policy](https://urban-crescent.vercel.app/privacy): how customer data is handled
+- [Home](https://www.urbancrescentdesign.com/): services, portfolio, testimonials and consultation form
+- [Warranty Policy](https://www.urbancrescentdesign.com/warranty): coverage, exclusions and how to claim
+- [Terms of Service](https://www.urbancrescentdesign.com/terms): quotations, payments, cancellations and refunds
+- [Privacy Policy](https://www.urbancrescentdesign.com/privacy): how customer data is handled
+- [Contact](https://www.urbancrescentdesign.com/contact): phone, WhatsApp, email and address
 
 ## Booking
 
-Customers book a free consultation through the form at https://urban-crescent.vercel.app/#contact (name, phone, email, property location and service of interest), or by email or phone.
+Customers book a free consultation through the form at https://www.urbancrescentdesign.com/#contact, which opens WhatsApp (+91 96201 81911) with their details (name, phone, email, property location and service of interest), or by phone or WhatsApp.

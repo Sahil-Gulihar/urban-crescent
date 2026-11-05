@@ -1,6 +1,30 @@
 "use client";
 
+import type { FormEvent } from "react";
 import Image from "next/image";
+
+const WHATSAPP_NUMBER = "919620181911";
+
+function sendToWhatsApp(e: FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const data = new FormData(e.currentTarget);
+  const get = (key: string) => String(data.get(key) ?? "").trim();
+
+  const details = [
+    `Name: ${get("name")}`,
+    `Phone: ${get("phone")}`,
+    get("email") && `Email: ${get("email")}`,
+    get("location") && `Property location: ${get("location")}`,
+    get("service") && `Interested in: ${get("service")}`,
+  ].filter(Boolean);
+
+  const message = `Hi Urban Crescent, I'd like to book a free consultation.\n\n${details.join("\n")}`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  // Note: passing "noopener" makes window.open always return null, so detach the opener manually.
+  const opened = window.open(url, "_blank");
+  if (opened) opened.opener = null;
+  else window.location.href = url; // popup blocked: open WhatsApp in this tab instead
+}
 
 export default function CTA() {
   return (
@@ -138,14 +162,14 @@ export default function CTA() {
           </p>
 
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={sendToWhatsApp}
             style={{ display: "flex", flexDirection: "column", gap: 16 }}
           >
             {[
-              { id: "name", label: "Full Name", type: "text", placeholder: "Priya Sharma" },
-              { id: "phone", label: "Phone Number", type: "tel", placeholder: "+91 98765 43210" },
-              { id: "email", label: "Email Address", type: "email", placeholder: "you@example.com" },
-              { id: "location", label: "Property Location", type: "text", placeholder: "Area, City" },
+              { id: "name", label: "Full Name", type: "text", placeholder: "Priya Sharma", required: true, autoComplete: "name" },
+              { id: "phone", label: "Phone Number", type: "tel", placeholder: "+91 98765 43210", required: true, autoComplete: "tel" },
+              { id: "email", label: "Email Address", type: "email", placeholder: "you@example.com", required: false, autoComplete: "email" },
+              { id: "location", label: "Property Location", type: "text", placeholder: "Area, City", required: false, autoComplete: "address-level2" },
             ].map((field) => (
               <div key={field.id} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 <label
@@ -162,7 +186,10 @@ export default function CTA() {
                 </label>
                 <input
                   id={field.id}
+                  name={field.id}
                   type={field.type}
+                  required={field.required}
+                  autoComplete={field.autoComplete}
                   placeholder={field.placeholder}
                   style={{
                     border: "none",
@@ -185,6 +212,7 @@ export default function CTA() {
             {/* Service interest */}
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
               <label
+                htmlFor="service"
                 style={{
                   fontSize: "0.65rem",
                   letterSpacing: "0.14em",
@@ -196,6 +224,9 @@ export default function CTA() {
                 I&rsquo;m interested in
               </label>
               <select
+                id="service"
+                name="service"
+                defaultValue=""
                 style={{
                   border: "none",
                   borderBottom: "1px solid var(--cream-dark)",
@@ -231,7 +262,7 @@ export default function CTA() {
                 padding: "16px 32px",
               }}
             >
-              Request Free Consultation
+              Request on WhatsApp
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -245,6 +276,8 @@ export default function CTA() {
                 lineHeight: 1.5,
               }}
             >
+              Opens WhatsApp with your details filled in &mdash; just tap send.
+              <br />
               We respect your privacy and will never share your information.
             </p>
           </form>

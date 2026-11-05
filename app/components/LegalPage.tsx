@@ -5,10 +5,12 @@ import Footer from "./Footer";
 export default function LegalPage({
   title,
   updated,
+  label = "Legal",
   children,
 }: {
   title: string;
-  updated: string;
+  updated?: string;
+  label?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -64,7 +66,7 @@ export default function LegalPage({
 
       <main style={{ maxWidth: 760, margin: "0 auto", padding: "80px 40px 120px" }} className="legal">
         <span className="section-label" style={{ color: "var(--gold)", display: "block", marginBottom: 16 }}>
-          Legal
+          {label}
         </span>
         <h1
           className="font-display"
@@ -72,9 +74,13 @@ export default function LegalPage({
         >
           {title}
         </h1>
-        <p style={{ fontSize: "0.8rem", color: "var(--taupe-light)", marginBottom: 48 }}>
-          Last updated: {updated}
-        </p>
+        {updated ? (
+          <p style={{ fontSize: "0.8rem", color: "var(--taupe-light)", marginBottom: 48 }}>
+            Last updated: {updated}
+          </p>
+        ) : (
+          <div style={{ marginBottom: 40 }} />
+        )}
         {children}
       </main>
 

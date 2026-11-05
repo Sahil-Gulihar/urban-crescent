@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated="19 October 2026">
+    <LegalPage title="Privacy Policy" updated="5 November 2026">
       <p>
         Urban Crescent (&ldquo;Urban Crescent&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;)
         respects your privacy. This Privacy Policy explains what personal information we collect when you visit
@@ -59,6 +59,10 @@ export default function PrivacyPage() {
         <li>With our designers, factory, installation teams and logistics partners.</li>
         <li>With product brands and suppliers for orders and warranty registration.</li>
         <li>With service providers who host our website or handle communications, under confidentiality obligations.</li>
+        <li>
+          When you submit our consultation form, your details are placed into a WhatsApp message that you choose to
+          send to us. That message is handled by WhatsApp (Meta Platforms) under its own privacy policy.
+        </li>
         <li>With government or law enforcement authorities when required by law.</li>
       </ul>
 
@@ -106,8 +110,8 @@ export default function PrivacyPage() {
 
       <h2>10. Contact and grievances</h2>
       <p>
-        For questions, requests or complaints about this policy, contact our Grievance Officer at{" "}
-        <a href="mailto:hello@urbancrescent.in">hello@urbancrescent.in</a> or call +91 99999 12345. We will
+        For questions, requests or complaints about this policy, contact our Grievance Officer by calling{" "}
+        <a href="tel:+919620181911">+91 96201 81911</a> or messaging us on <a href="https://wa.me/919620181911">WhatsApp</a>. We will
         acknowledge your request promptly and respond within the time required by law.
       </p>
     </LegalPage>

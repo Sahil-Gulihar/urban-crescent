@@ -6,7 +6,7 @@ Guidance for AI coding agents working in this repository.
 
 Marketing site for Urban Crescent, an interior design and execution studio in India.
 Single landing page plus legal pages, built with Next.js (App Router), React 19 and Tailwind CSS v4.
-Deployed on Vercel at https://urban-crescent.vercel.app.
+Deployed on Vercel at https://www.urbancrescentdesign.com (previously urban-crescent.vercel.app).
 
 ## Commands
 

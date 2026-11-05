@@ -5,7 +5,7 @@ const description =
   "Urban Crescent designs and builds complete interiors end to end — modular kitchens, wardrobes, living rooms, bedrooms, lighting and painting — with product brands customised to your choice.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://urban-crescent.vercel.app"),
+  metadataBase: new URL("https://www.urbancrescentdesign.com"),
   title: {
     default: "Urban Crescent — Interiors Redefined",
     template: "%s | Urban Crescent",
@@ -46,13 +46,19 @@ const jsonLd = {
   "@type": "HomeAndConstructionBusiness",
   name: "Urban Crescent",
   description,
-  url: "https://urban-crescent.vercel.app",
-  logo: "https://urban-crescent.vercel.app/icon.svg",
-  image: "https://urban-crescent.vercel.app/opengraph-image",
-  email: "hello@urbancrescent.in",
-  telephone: "+91 99999 12345",
+  url: "https://www.urbancrescentdesign.com",
+  logo: "https://www.urbancrescentdesign.com/icon.svg",
+  image: "https://www.urbancrescentdesign.com/opengraph-image",
+  telephone: "+91 96201 81911",
   areaServed: ["Mumbai", "Bangalore", "Hyderabad", "Pune"].map((name) => ({ "@type": "City", name })),
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "OMBR Layout, Kasturi Nagar",
+    addressLocality: "Bangalore",
+    addressRegion: "Karnataka",
+    postalCode: "560043",
+    addressCountry: "IN",
+  },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Interior services",
@@ -78,6 +84,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"
