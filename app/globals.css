@@ -21,6 +21,12 @@
 
 * { box-sizing: border-box; }
 
+/* Text selection: logo yellow instead of the browser's blue */
+::selection {
+  background: #E8B84A;
+  color: var(--charcoal);
+}
+
 html { scroll-behavior: smooth; }
 
 body {
