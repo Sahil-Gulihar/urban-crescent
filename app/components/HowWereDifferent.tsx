@@ -6,6 +6,7 @@ const differentiators = [
   {
     num: "01",
     title: "Modular Is Our DNA",
+    short: "Factory-precision builds that fit perfectly and last.",
     body: "We don't dabble in modular — it's the foundation of everything we build. Our factory-precision manufacturing means consistently superior quality, perfect fits, and finishes that last decades, not years.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -21,6 +22,7 @@ const differentiators = [
   {
     num: "02",
     title: "End-to-End Ownership",
+    short: "One team from design to installation.",
     body: "One company. One point of contact. Zero chaos. We manage every step — concept design, material sourcing, manufacturing, delivery, and white-glove installation — so you don't have to coordinate a circus.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -34,6 +36,7 @@ const differentiators = [
   {
     num: "03",
     title: "Design Before Dollar",
+    short: "See your space in 3D before work begins.",
     body: "Our free design consultation and detailed 3D visualisation let you see your space before a single nail is hammered. What you see is exactly what you get — no surprises, no regrets.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -47,6 +50,7 @@ const differentiators = [
   {
     num: "04",
     title: "Warranty & Assurance",
+    short: "Up to 7 years on plywood, 1 year on hardware.",
     body: "Up to 7 years of plywood warranty and 1 year on hardware — built to endure life's many moments. Warranty terms depend on the selected products and specifications, with hardware covered as per brand policy. We even customise product brands — plywood, hardware and fittings — as per your choice.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -61,11 +65,16 @@ const differentiators = [
 
 const processSteps = [
   { step: "1", label: "Discovery", desc: "We listen deeply to understand your lifestyle and vision." },
-  { step: "2", label: "Design", desc: "3D concepts and material boards crafted by our senior designers." },
-  { step: "3", label: "Manufacture", desc: "Factory-built modular units with precision quality checks." },
-  { step: "4", label: "Install", desc: "Our crew delivers and installs with zero disruption." },
-  { step: "5", label: "Handover", desc: "A complete walkthrough ensuring every detail is perfect." },
+  { step: "2", label: "Site Visit", desc: "We measure your space and note every site condition." },
+  { step: "3", label: "Design", desc: "3D concepts and material boards crafted by our senior designers." },
+  { step: "4", label: "Manufacture", desc: "Factory-built modular units with precision quality checks." },
+  { step: "5", label: "Install", desc: "Our crew delivers and installs with zero disruption." },
+  { step: "6", label: "Handover", desc: "A complete walkthrough ensuring every detail is perfect." },
 ];
+
+// One glow travels 1→2→…→6, rests on 6 for one beat, then restarts at 1.
+const GLOW_STEP_S = 1.8;
+const GLOW_CYCLE_S = GLOW_STEP_S * 6;
 
 export default function HowWereDifferent() {
   return (
@@ -189,7 +198,7 @@ export default function HowWereDifferent() {
           {differentiators.map((d, i) => (
             <div
               key={d.num}
-              className={`anim-fade-up d-${i * 100 + 200}`}
+              className={`diff-card anim-fade-up d-${i * 100 + 200}`}
               style={{
                 background: "rgba(248,244,238,0.04)",
                 border: "1px solid rgba(248,244,238,0.07)",
@@ -209,7 +218,7 @@ export default function HowWereDifferent() {
             >
               {/* Number */}
               <span
-                className="font-display"
+                className="font-display diff-num"
                 style={{
                   position: "absolute",
                   top: 24,
@@ -226,6 +235,7 @@ export default function HowWereDifferent() {
 
               {/* Icon */}
               <div
+                className="diff-icon"
                 style={{
                   width: 52,
                   height: 52,
@@ -241,7 +251,7 @@ export default function HowWereDifferent() {
               </div>
 
               <h3
-                className="font-display"
+                className="font-display diff-title"
                 style={{
                   fontSize: "1.45rem",
                   fontWeight: 400,
@@ -253,6 +263,7 @@ export default function HowWereDifferent() {
                 {d.title}
               </h3>
               <p
+                className="diff-body"
                 style={{
                   fontSize: "0.83rem",
                   lineHeight: 1.8,
@@ -261,6 +272,12 @@ export default function HowWereDifferent() {
                 }}
               >
                 {d.body}
+              </p>
+              <p
+                className="diff-short"
+                style={{ fontSize: "0.75rem", lineHeight: 1.5, color: "rgba(248,244,238,0.6)", fontWeight: 300 }}
+              >
+                {d.short}
               </p>
 
               {/* Accent line */}
@@ -293,95 +310,186 @@ export default function HowWereDifferent() {
             Our Process — From Vision to Reality
           </span>
 
-          <div
-            style={{
-              display: "flex",
-              gap: 0,
-              position: "relative",
-            }}
-            className="process-row"
-          >
-            {/* Connecting line */}
-            <div
-              style={{
-                position: "absolute",
-                top: 24,
-                left: "10%",
-                right: "10%",
-                height: 1,
-                background: "linear-gradient(to right, transparent, var(--gold), var(--gold), transparent)",
-                opacity: 0.2,
-              }}
-              className="process-line"
-            />
+          <div className="process-grid">
+            {processSteps.map((p, i) => {
+              // Snake layout: 1 2 3 on top, then 6 5 4 underneath so 3 drops straight down into 4.
+              const topRow = i < 3;
+              const gridColumn = topRow ? i + 1 : 6 - i;
+              // Glow order: 1→2 (0), 2→3 (1), 3→4 down (2), 4→5 (3), 5→6 (4).
+              return (
+                <div
+                  key={p.step}
+                  className={`process-item anim-fade-up d-${Math.min(i * 100 + 200, 700)}`}
+                  style={{ gridRow: topRow ? 1 : 2, gridColumn }}
+                >
+                  {/* 3 → 4: straight down */}
+                  {i === 3 && (
+                    <div className="proc-down" aria-hidden="true">
+                      <span className="proc-chevron proc-chevron-down" />
+                      <span className="proc-track"><span className="proc-glow proc-glow-v" style={{ animationDelay: `${2 * GLOW_STEP_S}s` }} /></span>
+                    </div>
+                  )}
 
-            {processSteps.map((p, i) => (
-              <div
-                key={p.step}
-                className={`anim-fade-up d-${i * 100 + 200}`}
-                style={{
-                  flex: 1,
-                  textAlign: "center",
-                  padding: "0 16px",
-                  position: "relative",
-                }}
-              >
-                {/* Step circle */}
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "50%",
-                    border: "1px solid rgba(184,117,32,0.4)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 20px",
-                    background: "rgba(184,117,32,0.08)",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                >
-                  <span
-                    className="font-display"
-                    style={{ fontSize: "1.1rem", fontWeight: 400, color: "var(--gold)" }}
-                  >
-                    {p.step}
-                  </span>
+                  {/* 1 → 2, 2 → 3: to the right */}
+                  {(i === 0 || i === 1) && (
+                    <div className="proc-arrow proc-arrow-right" aria-hidden="true">
+                      <span className="proc-chevron proc-chevron-right" />
+                      <span className="proc-track"><span className="proc-glow proc-glow-r" style={{ animationDelay: `${i * GLOW_STEP_S}s` }} /></span>
+                    </div>
+                  )}
+
+                  {/* 4 → 5, 5 → 6: to the left */}
+                  {(i === 3 || i === 4) && (
+                    <div className="proc-arrow proc-arrow-left" aria-hidden="true">
+                      <span className="proc-chevron proc-chevron-left" />
+                      <span className="proc-track"><span className="proc-glow proc-glow-l" style={{ animationDelay: `${i * GLOW_STEP_S}s` }} /></span>
+                    </div>
+                  )}
+
+                  <div className="proc-circle" style={{ animationDelay: `${i * GLOW_STEP_S}s` }}>
+                    <span className="font-display proc-num">{p.step}</span>
+                  </div>
+                  <div className="proc-label">{p.label}</div>
+                  <p className="proc-desc">{p.desc}</p>
                 </div>
-                <div
-                  style={{
-                    fontSize: "0.78rem",
-                    fontWeight: 500,
-                    letterSpacing: "0.08em",
-                    color: "var(--cream)",
-                    marginBottom: 8,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {p.label}
-                </div>
-                <p
-                  style={{
-                    fontSize: "0.75rem",
-                    lineHeight: 1.6,
-                    color: "rgba(248,244,238,0.45)",
-                    fontWeight: 300,
-                  }}
-                >
-                  {p.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
 
       <style>{`
+        .diff-short { display: none; }
+
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          row-gap: 72px;
+          max-width: 960px;
+          margin: 0 auto;
+        }
+        .process-item { position: relative; text-align: center; padding: 0 16px; }
+        .proc-circle {
+          width: 48px; height: 48px; border-radius: 50%;
+          border: 1px solid rgba(184,117,32,0.4);
+          background: rgba(184,117,32,0.08);
+          display: flex; align-items: center; justify-content: center;
+          margin: 0 auto 18px; position: relative; z-index: 1;
+          animation: procCircle ${GLOW_CYCLE_S}s linear infinite; /* no backwards fill: circles stay dim until their turn */
+        }
+        .proc-num { font-size: 1.1rem; font-weight: 400; color: var(--gold); }
+        .proc-label {
+          font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+          color: var(--cream); margin-bottom: 8px; text-transform: uppercase;
+        }
+        .proc-desc { font-size: 0.75rem; line-height: 1.6; color: rgba(248,244,238,0.45); font-weight: 300; }
+
+        /* Horizontal arrows: from this circle's edge to the neighbouring circle's edge */
+        .proc-arrow {
+          position: absolute; top: 24px; height: 0;
+          width: calc(100% - 68px);
+          border-top: 1px solid rgba(184,117,32,0.35);
+        }
+        .proc-arrow-right { left: calc(50% + 34px); }
+        .proc-arrow-left { right: calc(50% + 34px); }
+        .proc-chevron {
+          position: absolute; width: 7px; height: 7px;
+          border-top: 1px solid rgba(184,117,32,0.6);
+          border-right: 1px solid rgba(184,117,32,0.6);
+        }
+        .proc-chevron-right { right: 0; top: -4px; transform: rotate(45deg); }
+        .proc-chevron-left { left: 0; top: -4px; transform: rotate(-135deg); }
+
+        /* 3 → 4: vertical arrow in the row gap, straight down into circle 4 */
+        .proc-down {
+          position: absolute; left: 50%;
+          bottom: calc(100% + 6px); height: 56px; width: 0;
+          border-left: 1px solid rgba(184,117,32,0.35);
+        }
+        .proc-chevron-down { left: -4px; bottom: 0; transform: rotate(135deg); }
+
+        /* The single travelling streak: a neon segment 1/3 of the arrow, clipped inside the line */
+        .proc-track { position: absolute; overflow: hidden; pointer-events: none; }
+        .proc-arrow .proc-track { left: 0; right: 0; top: -3px; height: 5px; }
+        .proc-down .proc-track { top: 0; bottom: 0; left: -3px; width: 5px; }
+        .proc-glow {
+          position: absolute; display: block;
+          animation-duration: ${GLOW_CYCLE_S}s;
+          animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+          animation-iteration-count: infinite;
+          animation-fill-mode: both;
+          will-change: transform;
+        }
+        .proc-glow-r, .proc-glow-l {
+          top: 2px; left: 0; height: 1px; width: 33.333%;
+          background: linear-gradient(90deg, rgba(255,200,90,0), #FFD27A 50%, rgba(255,200,90,0));
+          box-shadow: 0 0 4px 1px rgba(255,186,60,0.75);
+        }
+        .proc-glow-v {
+          left: 2px; top: 0; width: 1px; height: 33.333%;
+          background: linear-gradient(180deg, rgba(255,200,90,0), #FFD27A 50%, rgba(255,200,90,0));
+          box-shadow: 0 0 4px 1px rgba(255,186,60,0.75);
+        }
+        .proc-glow-r { animation-name: procStreakR; }
+        .proc-glow-l { animation-name: procStreakL; }
+        .proc-glow-v { animation-name: procStreakV; }
+
+        /* Each arrow owns 1/6 of the cycle; the streak sits clipped off the ends the rest of the time. */
+        @keyframes procStreakR {
+          0%      { transform: translateX(-100%); opacity: 0; }
+          0.5%    { opacity: 1; }
+          16.2%   { opacity: 1; }
+          16.667% { transform: translateX(300%); opacity: 0; }
+          100%    { transform: translateX(300%); opacity: 0; }
+        }
+        @keyframes procStreakL {
+          0%      { transform: translateX(300%); opacity: 0; }
+          0.5%    { opacity: 1; }
+          16.2%   { opacity: 1; }
+          16.667% { transform: translateX(-100%); opacity: 0; }
+          100%    { transform: translateX(-100%); opacity: 0; }
+        }
+        @keyframes procStreakV {
+          0%      { transform: translateY(-100%); opacity: 0; }
+          0.5%    { opacity: 1; }
+          16.2%   { opacity: 1; }
+          16.667% { transform: translateY(300%); opacity: 0; }
+          100%    { transform: translateY(300%); opacity: 0; }
+        }
+        @keyframes procCircle {
+          0%   { border-color: rgba(255,210,122,0.9); }
+          12%  { border-color: rgba(255,210,122,0.9); }
+          22%  { border-color: rgba(184,117,32,0.4); }
+          100% { border-color: rgba(184,117,32,0.4); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .proc-glow { display: none; }
+          .proc-circle { animation: none; }
+        }
+
         @media (max-width: 768px) {
-          .diff-grid { grid-template-columns: 1fr !important; }
-          .process-row { flex-direction: column !important; gap: 32px !important; }
-          .process-line { display: none; }
+          /* Differentiators: 2x2 with short text */
+          .diff-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; margin-bottom: 56px !important; }
+          .diff-card { padding: 18px 14px !important; }
+          .diff-num { font-size: 1.6rem !important; top: 12px !important; right: 12px !important; }
+          .diff-icon { width: 38px !important; height: 38px !important; margin-bottom: 14px !important; }
+          .diff-icon svg { width: 20px; height: 20px; }
+          .diff-title { font-size: 1.05rem !important; margin-bottom: 6px !important; }
+          .diff-body { display: none; }
+          .diff-short { display: block; }
+
+          /* Process: still 3 + 3, labels only */
+          .process-grid { row-gap: 48px; }
+          .process-item { padding: 0 4px; }
+          .proc-circle { width: 40px; height: 40px; margin-bottom: 10px; }
+          .proc-num { font-size: 0.95rem; }
+          .proc-label { font-size: 0.62rem; letter-spacing: 0.06em; }
+          .proc-desc { display: none; }
+          .proc-arrow { top: 20px; width: calc(100% - 52px); }
+          .proc-arrow-right { left: calc(50% + 26px); }
+          .proc-arrow-left { right: calc(50% + 26px); }
+          .proc-down { height: 36px; }
         }
       `}</style>
     </section>
