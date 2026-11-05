@@ -17,10 +17,10 @@ const testimonials = [
   {
     quote:
       "We had a wonderful experience working with Arti as our interior decorator for our flat at Gopalan Aqua. She understood our preferences and helped transform our house into a beautiful and welcoming home. Her creativity, attention to detail, and commitment to her work made the entire process a great experience. We truly appreciate her efforts in bringing our vision to life and making our home feel special. Thank you, Arti, for your wonderful work and dedication. We would happily recommend her to anyone looking for an interior decorator!",
-    author: "Homeowner",
-    role: "Gopalan Aqua, Bangalore",
+    author: "Archana",
+    role: "Homeowner, Gopalan Aqua, Bangalore",
     avatar: "/testimonials/gopalan-aqua-client-passport.jpg",
-    avatarAlt: "Urban Crescent client from Gopalan Aqua",
+    avatarAlt: "Archana",
     avatarPosition: "center top",
     project: "Home Interior",
   },
